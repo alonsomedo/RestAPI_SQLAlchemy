@@ -13,9 +13,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # This turn off the flask S
 app.secret_key = 'jose'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
+
 
 # https://blog.tecladocode.com/learn-python-advanced-configuration-of-flask-jwt/
 #app.config["JWT_AUTH_URL_RULE"] = '/login'
@@ -37,8 +35,8 @@ api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList,'/stores')
 api.add_resource(UserRegister, '/register')
 
-from db import db
-db.init_app(app)
+#from db import db
+#db.init_app(app)
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
 
